@@ -1,0 +1,65 @@
+var pos
+var vel
+var xdir
+var ydir
+
+var up 
+var down
+var left
+var right
+var moveSpeed = 3
+
+function setup() {
+  createCanvas(800, 800);
+  pos = createVector(200,200)
+  vel = createVector(0,0)
+  up = createVector(0, -1)
+  down = createVector(0, 1)
+  left = createVector(-1, 0)
+  right = createVector(1, 0)
+}
+
+function draw() {
+  background(220);
+  
+  
+  
+  keyInput()
+  
+  ellipse(pos.x,pos.y, 20)
+  
+}
+
+function keyInput(){
+  if(keyIsPressed){
+        if(keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+            vel.add(left)
+        }       
+        if(keyIsDown(RIGHT_ARROW)|| keyIsDown(68)) {
+            vel.add(right)
+        }       
+        if(keyIsDown(UP_ARROW)|| keyIsDown(87)) {
+            vel.add(up)
+        }       
+        if(keyIsDown(DOWN_ARROW)|| keyIsDown(83)) {
+            vel.add(down)
+        }
+        if((keyIsDown(LEFT_ARROW) || keyIsDown(65)) && 
+           (keyIsDown(RIGHT_ARROW)|| keyIsDown(68))){    
+           vel = createVector(0,0)
+        }
+        if((keyIsDown(UP_ARROW)|| keyIsDown(87)) && 
+           (keyIsDown(DOWN_ARROW)|| keyIsDown(83))){    
+           vel = createVector(0,0)
+        }
+  
+    vel.normalize()
+    vel.setMag(6)
+    pos.add(vel)
+    
+  }else{
+    vel = createVector(0,0)
+  }
+  
+        
+}
